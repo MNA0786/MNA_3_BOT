@@ -18,7 +18,7 @@
     "scripts": {
         "post-install-cmd": [
             "chmod 666 users.json metadata.json bot_state.json error.log || true",
-            "mkdir -p uploads && chmod 777 uploads"
+            "mkdir -p uploads temp && chmod 777 uploads temp"
         ]
     }
 }
