@@ -1,6 +1,5 @@
 <?php
 // Ultimate File Management Bot v8.0 - Render.com Optimized
-// Complete PHP Version with all features
 
 // === CONFIGURATION ===
 define('API_ID', 21944581);
@@ -17,10 +16,20 @@ define('RETRY_COUNT', 10);
 define('BASE_URL', getenv('RENDER_EXTERNAL_URL') ?: 'https://your-app-name.onrender.com');
 define('IS_PRODUCTION', getenv('RENDER') ? true : false);
 
+// Ensure required directories exist
+$required_dirs = ['uploads', 'temp'];
+foreach ($required_dirs as $dir) {
+    if (!file_exists($dir)) {
+        mkdir($dir, 0777, true);
+    }
+}
+
 // Ensure required extensions are loaded
 if (!extension_loaded('curl')) {
     die("❌ cURL extension is required but not loaded.");
 }
+
+// ... rest of your code same as before
 
 // Create required directories
 if (!file_exists('uploads')) {
