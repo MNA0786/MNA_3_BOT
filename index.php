@@ -1,11 +1,13 @@
 <?php
 // Ultimate File Management Bot v8.0 - Render.com Optimized
+// Complete PHP Version with all features
 
 // === CONFIGURATION ===
 define('API_ID', 21944581);
 define('API_HASH', '7b1c174a5cd3466e25a976c39a791737');
 define('BOT_TOKEN', '7882727627:AAEHg7JGBoeK8_nD8G1MwL8EEl_Oo5-AB9s');
 define('OWNER_ID', 1080317415);
+define('BOT_USERNAME', 'MNA_3_BOT');
 
 define('VIDEO_WIDTH', 430);
 define('VIDEO_HEIGHT', 241);
@@ -13,7 +15,7 @@ define('CHUNK_SIZE', 64 * 1024);
 define('RETRY_COUNT', 10);
 
 // Render.com specific settings
-define('BASE_URL', getenv('RENDER_EXTERNAL_URL') ?: 'https://your-app-name.onrender.com');
+define('BASE_URL', getenv('RENDER_EXTERNAL_URL') ?: 'https://mna-3-bot.onrender.com');
 define('IS_PRODUCTION', getenv('RENDER') ? true : false);
 
 // Ensure required directories exist
@@ -27,16 +29,6 @@ foreach ($required_dirs as $dir) {
 // Ensure required extensions are loaded
 if (!extension_loaded('curl')) {
     die("❌ cURL extension is required but not loaded.");
-}
-
-// ... rest of your code same as before
-
-// Create required directories
-if (!file_exists('uploads')) {
-    mkdir('uploads', 0777, true);
-}
-if (!file_exists('temp')) {
-    mkdir('temp', 0777, true);
 }
 
 // === HELPER FUNCTIONS ===
@@ -373,6 +365,7 @@ class TelegramBot {
 // === COMMAND HANDLERS ===
 function handle_start_help($bot, $chat_id) {
     $text = "🤖 <b>Ultimate File Management Bot v8.0</b>\n\n"
+          . "<b>Username:</b> @MNA_3_BOT\n"
           . "<b>Owner:</b> @MahatabAnsari786\n"
           . "<b>Host:</b> Render.com 🚀\n\n"
           . "<b>Main Commands:</b>\n"
@@ -646,6 +639,7 @@ function handle_status($bot, $chat_id) {
     $convert_format = $user_state['convert_format'] ?? 'Not set';
     
     $text = "🤖 <b>Bot Status - Render.com</b>\n\n"
+          . "• <b>Username:</b> @MNA_3_BOT\n"
           . "• <b>Owner:</b> @MahatabAnsari786\n"
           . "• <b>Filename:</b> <code>$name</code>\n"
           . "• <b>4GB Split:</b> $split\n"
@@ -1168,7 +1162,7 @@ if (isset($_GET['health'])) {
         'status' => 'ok',
         'timestamp' => date('Y-m-d H:i:s'),
         'environment' => IS_PRODUCTION ? 'production' : 'development',
-        'bot_username' => 'UltimateFileBot',
+        'bot_username' => 'MNA_3_BOT',
         'version' => '8.0',
         'owner' => 'MahatabAnsari786'
     ];
@@ -1237,6 +1231,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="status">
                 <strong>🚀 Status:</strong> <span style="color: green;">🟢 Running</span><br>
                 <strong>📅 Version:</strong> 8.0<br>
+                <strong>🤖 Username:</strong> @MNA_3_BOT<br>
                 <strong>👤 Owner:</strong> @MahatabAnsari786<br>
                 <strong>🌐 Host:</strong> Render.com<br>
                 <strong>🕒 Started:</strong> <?php echo date('Y-m-d H:i:s'); ?>
