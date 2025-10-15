@@ -29,17 +29,19 @@ WORKDIR /var/www/html
 # Apache configuration enable karo
 RUN a2enmod rewrite headers
 
-# File permissions set karo
-RUN chown -R www-data:www-data /var/www/html \
+# Required directories create karo
+RUN mkdir -p /var/www/html/uploads /var/www/html/temp \
+    && chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html \
-    && chmod -R 777 /var/www/html/uploads
+    && chmod -R 777 /var/www/html/uploads /var/www/html/temp
 
 # Copy project files
 COPY . .
 
 # File permissions for data files
 RUN touch users.json metadata.json bot_state.json error.log \
-    && chmod 666 users.json metadata.json bot_state.json error.log
+    && chmod 666 users.json metadata.json bot_state.json error.log \
+    && chown -R www-data:www-data /var/www/html
 
 # Port expose karo
 EXPOSE 80
